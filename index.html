@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Map</title>
+    <style>
+        body, html { margin: 0; height: 100%; overflow: hidden; }
+        .navbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 10px;
+            z-index: 2;
+        }
+        .navbar input, .navbar button {
+            margin: 0 5px;
+        }
+        #map {
+            height: 100%;
+            width: 100%;
+        }
+        .controls {
+            position: absolute;
+            top: 50px;
+            left: 10px;
+            background: white;
+            padding: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            z-index: 2;
+        }
+        .info {
+            position: absolute;
+            top: 110px;
+            left: 10px;
+            background: white;
+            padding: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <button>Back</button>
+        <input type="text" placeholder="Origin">
+        <input type="text" placeholder="Destination">
+        <button>Weather</button>
+        <button>Calculate Route</button>
+        <select>
+            <option>Light Mode</option>
+            <option>Dark Mode</option>
+        </select>
+    </div>
+
+    <div id="map">
+        <!-- Google Maps will be loaded here -->
+    </div>
+
+    <div class="controls">
+        <button>X</button>
+    </div>
+
+    <div class="info">
+        <p>Distance:</p>
+        <p>Duration:</p>
+    </div>
+
+    <script>
+        function initMap() {
+            var center = {lat: 48.8584, lng: 2.2945}; // Coordinates for Eiffel Tower
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: center
+            });
+            var marker = new google.maps.Marker({
+                position: center,
+                map: map
+            });
+        }
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+    </script>
+</body>
+</html>
